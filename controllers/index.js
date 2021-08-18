@@ -1,0 +1,1 @@
+module.exports.ImageUploaderController = require('./imageuploader.controller');
