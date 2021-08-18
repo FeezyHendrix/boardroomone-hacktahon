@@ -8,15 +8,19 @@ cloudinary.config({
   secure: true
 });
 
-const uploadImageTocloudinary = async (filePath) => {
+const uploadImageTocloudinary = async (base64) => {
   try {
-    const response = await cloudinary.uploader.upload(filePath, {
-      background_removal: "cloudinary_ai",
+    const response = await cloudinary.uploader.upload(
+      'data:image/jpeg;base64,' + base64, {
+     eager: [
+      { width: process.env.WIDTH, height: process.env.WIDTH, crop: "crop", gravity: "face"} 
+     ]
     });
 
     return response;
   } catch(e) {
-    logger.error(e);
+    console.log(e.response)
+    logger.error(JSON.stringify(e));
     throw new Error(e);
   }
 };

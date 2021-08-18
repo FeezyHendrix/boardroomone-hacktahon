@@ -1,17 +1,31 @@
 const catchAsync = require("../utils/catchAsync");
 const logger = require("../utils/logger");
-const path = require('path');
-const { cloudinaryHelper } = require('../helpers');
-const removeFile = require('../utils/removeFile');
+const path = require("path");
+const fs = require("fs");
+
+const { cloudinaryHelper } = require("../helpers");
+const removeFile = require("../utils/removeFile");
+const { removeBackground } = require("../helpers/removebg.helper");
+
+
 const uploadImage = catchAsync(async (req, res) => {
   const filePath = path.join(__dirname, `/../uploads/${req.file.filename}`);
-  const imageUploadResponse  = await cloudinaryHelper.uploadImageTocloudinary(filePath);
 
-  const urlArray = imageUploadResponse.secure_url.split('upload');
-  urlArray[0] = urlArray[0] + `upload/c_thumb,g_face,h_${process.env.HEIGHT},w_${process.env.WIDTH}`
-  let processedUrl = urlArray[0] + urlArray[1];
+  const removeBgResponse = await removeBackground(
+    process.env.REMOVE_BG_BASE_URL,
+    {
+      image_file_b64: fs.readFileSync(filePath).toString("base64"),
+      format: "auto",
+      bg_color: process.env.BG_COLOR,
+    },
+    process.env.REMOVE_BG_API_KEY
+  );
 
-  res.send(processedUrl);
+  const imageUploadResponse = await cloudinaryHelper.uploadImageTocloudinary(
+    removeBgResponse.data.result_b64
+  );
+
+  res.send(imageUploadResponse.secure_url);
 
   // Remove file after upload
   removeFile(filePath);
@@ -19,4 +33,4 @@ const uploadImage = catchAsync(async (req, res) => {
 
 module.exports = {
   uploadImage,
-}
+};
