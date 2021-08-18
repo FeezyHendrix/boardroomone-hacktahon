@@ -1,4 +1,6 @@
 const ApiError = require('../utils/ApiError');
+const logger = require('../utils/logger');
+const httpStatus = require('http-status');
 
 const errorConverter = (err, req, res, next) => {
   let error = err;
