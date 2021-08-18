@@ -35,7 +35,7 @@ const uploadImage = catchAsync(async (req, res) => {
   );
   
   // Return newly created image
-  res.send(imageUploadResponse.secure_url);
+  res.send({ avatar_url: imageUploadResponse.secure_url });
 
   // Remove file after upload
   removeFile(filePath);

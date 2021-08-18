@@ -5,6 +5,11 @@ This api service uses cloudinary and remove.bg api to properly get a good avatar
 * node.js
 * npm
 
+## API Documentation
+```
+https://documenter.getpostman.com/view/2263121/TzzAMwgx
+```
+
 ## Installation
 Clone the repo:
   ```
