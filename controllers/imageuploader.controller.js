@@ -29,7 +29,7 @@ const uploadImage = catchAsync(async (req, res) => {
     process.env.REMOVE_BG_API_KEY
   );
   
-  // Uploads image to cloudinary
+  // Upload image to cloudinary
   const imageUploadResponse = await cloudinaryHelper.uploadImageTocloudinary(
     removeBgResponse.data.result_b64
   );

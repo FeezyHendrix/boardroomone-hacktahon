@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "app",
-      "script": "bin/www.js",
+      "script": "./bin/www.js",
       "instances": 1,
       "autorestart": true,
       "watch": false,
