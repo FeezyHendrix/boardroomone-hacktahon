@@ -9,6 +9,7 @@ const router = require('./router');
 const ApiError = require('./utils/ApiError');
 const httpStatus = require('http-status');
 
+
 /**
  * If node environment isn't test environment 
  * Log http requests to console
@@ -19,7 +20,7 @@ const httpStatus = require('http-status');
 }
 
 
-app.use(helmet());
+// app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
