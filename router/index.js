@@ -2,6 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path')
 
+/**
+ * Accepts multipart upload from client.
+ */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '/../uploads'))

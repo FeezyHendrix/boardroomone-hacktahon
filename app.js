@@ -19,8 +19,10 @@ const httpStatus = require('http-status');
   app.use(morgan.errorHandler);
 }
 
-
-// app.use(helmet());
+/**
+ * Middlewares
+ */
+app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());

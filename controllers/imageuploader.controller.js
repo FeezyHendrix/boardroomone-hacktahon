@@ -8,9 +8,17 @@ const removeFile = require("../utils/removeFile");
 const { removeBackground } = require("../helpers/removebg.helper");
 
 
+/**
+ * @method uploadImage
+ * Controller to response to a new image upload response
+ * @returns {Object}
+ */
 const uploadImage = catchAsync(async (req, res) => {
+  // Get file path of uploaded image
   const filePath = path.join(__dirname, `/../uploads/${req.file.filename}`);
 
+  // Call external remove background api
+  // Removes current background and set's it to black
   const removeBgResponse = await removeBackground(
     process.env.REMOVE_BG_BASE_URL,
     {
@@ -20,11 +28,13 @@ const uploadImage = catchAsync(async (req, res) => {
     },
     process.env.REMOVE_BG_API_KEY
   );
-
+  
+  // Uploads image to cloudinary
   const imageUploadResponse = await cloudinaryHelper.uploadImageTocloudinary(
     removeBgResponse.data.result_b64
   );
-
+  
+  // Return newly created image
   res.send(imageUploadResponse.secure_url);
 
   // Remove file after upload
