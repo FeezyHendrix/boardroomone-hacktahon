@@ -25,7 +25,7 @@ const uploadImageTocloudinary = async (base64) => {
       {
         width: process.env.WIDTH,
         height: process.env.HEIGHT,
-        crop: "crop",
+        crop: "thumb",
         gravity: "face",
       }
     );

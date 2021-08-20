@@ -19,6 +19,9 @@ const upload = multer({ storage: storage });
 const router = express.Router();
 const { ImageUploaderController } = require('../controllers');
 
+router.route('/').get((req, res) => {
+  return res.render('index');
+})
 router.route('/upload').post(upload.single('avatar'), ImageUploaderController.uploadImage);
 
 

@@ -1,0 +1,40 @@
+body, html {
+  font-family: 'Nunito Sans', sans-serif;
+  /* background-color: rgb(127, 221, 255); */
+}
+
+* {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.title {
+  color: rgb(53, 22, 132);
+  text-align: center !important;
+}
+
+.header-wrapper {
+  width: 100%;
+}
+.card {
+  box-shadow: 0 14px 28px rgba(201, 201, 201, 0.25), 0 10px 10px rgba(133, 132, 132, 0.22);
+  border-radius: 20px !important;
+  padding: 10px;
+  border: none;
+}
+
+.custom-btn {
+  background-color: rgb(53, 22, 132);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 7px;
+  display: block;
+  margin: 20px auto;
+  border: none;
+}
+
+.p1 {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  color: rgb(53, 22, 132);
+}

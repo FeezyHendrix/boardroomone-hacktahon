@@ -8,7 +8,9 @@ const morgan = require('./utils/morgan');
 const router = require('./router');
 const ApiError = require('./utils/ApiError');
 const httpStatus = require('http-status');
+const path = require('path');
 
+app.set('view engine', 'ejs');
 
 /**
  * If node environment isn't test environment 
@@ -28,6 +30,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 app.use('/', router);
+app.use('/static', express.static(path.join(__dirname, './static')))
+
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
